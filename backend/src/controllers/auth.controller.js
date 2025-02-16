@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js";
 import { generateToken } from "../lib/util.js";
+import cloudinary from "../lib/cloudinary.js";
 
 
  export const signUp = async (req , res) => {
@@ -111,10 +112,56 @@ export const logOut = async (req , res) => {
         })
         
     } catch (error) {
+        console.log("Error in log out controller " + error);
+        res.status(500).json({
+            message : "log out failed"
+        })
+        
         
     }
 
 }
 
+export const updateProfile = async (req , res ) => {
+try {
+        const {profilePic} = req.body;
+        if(!profilePic) {
+            return res.status(400).json({
+                message : "Provide The Profile Picture"
+            })
+    
+        }
 
+
+        const userId = req.user._id
+        const uploadResponse = await cloudinary.uploader.upload(profilePic)
+
+        const updatedUser = await User.findByIdAndUpdate(userId , {profilePic : uploadResponse.secure_url} , {new : true})
+
+        res.status(200).json({
+            message : "Successfully profile updated" ,
+            updatedUser
+        })
+        
+    } catch (error) {
+        console.log("Error in log out controller " + error);
+        res.status(500).json({
+            message : "Interval Server Error , Profile update failed"
+        })
+    }
+
+}
+export const checkAuth =  (req , res) => {
+    try {
+
+        res.status(200).json(req.user);
+        
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message : "Something wrong in checkAuth"
+        })
+        
+    }
+}
  
