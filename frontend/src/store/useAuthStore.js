@@ -3,6 +3,7 @@ import { axiosInstance } from "../lib/axios.js"
 
 import toast from "react-hot-toast"
 
+
  export const  useAuthStore = create((set) => ({
     authUser : null ,
     isSigningUp : false ,
@@ -37,6 +38,34 @@ import toast from "react-hot-toast"
       }
   
     },
+    logIn : async (data) => {
+      try {
+         const res = await axiosInstance.post("/auth/login" , data)
+         toast.success("Logined successfully")
+         set({authUser : res.data})
+      } catch (error) {
+         console.log("error in the login");
+         toast.error("Invailed credentals" );
+      } finally {
+         set({isLoggingIng : false})
+      }
+
+    },
+    updateProfile : async (file) => {
+      set({isUpdatingProfile : true})
+      try {
+         const res = await axiosInstance.put("/auth/update-profile" , file);
+         set({authUser : res.data})
+         toast.success("Profile updated successfully")
+      } catch (error) {
+         console.log(error)
+         toast.error("Update failed")
+      }  finally {
+         set({isUpdatingProfile : false})
+      }
+      
+    },
+
     logout : async () => {
       try {
         const res = await axiosInstance.post("/auth/logout")
@@ -45,6 +74,6 @@ import toast from "react-hot-toast"
       } catch (error) {
          toast.error(error.data.response.message)
          
-      }
+      } 
     }
  }))

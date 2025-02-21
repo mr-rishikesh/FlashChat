@@ -68,10 +68,11 @@ import cloudinary from "../lib/cloudinary.js";
         })
 
     }
+   // console.log("came in the login")
     try {
         const user = await User.findOne({email});
         if(!user) {
-            return res.status(400).json({
+            return res.status(401).json({
                 message : "Invalid credentials"
             })
 
@@ -132,15 +133,17 @@ try {
     
         }
 
+        console.log("in profilepic")
+
 
         const userId = req.user._id
         const uploadResponse = await cloudinary.uploader.upload(profilePic)
 
         const updatedUser = await User.findByIdAndUpdate(userId , {profilePic : uploadResponse.secure_url} , {new : true})
-
+        console.log("before the res in update profile")
         res.status(200).json({
             message : "Successfully profile updated" ,
-            updatedUser
+            data :  updatedUser
         })
         
     } catch (error) {
