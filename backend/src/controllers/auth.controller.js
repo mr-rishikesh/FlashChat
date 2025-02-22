@@ -133,21 +133,21 @@ try {
     
         }
 
-        console.log("in profilepic")
+       // ////console.log("in profilepic")
 
 
         const userId = req.user._id
         const uploadResponse = await cloudinary.uploader.upload(profilePic)
 
         const updatedUser = await User.findByIdAndUpdate(userId , {profilePic : uploadResponse.secure_url} , {new : true})
-        console.log("before the res in update profile")
+       // console.log("before the res in update profile")
         res.status(200).json({
             message : "Successfully profile updated" ,
             data :  updatedUser
         })
         
     } catch (error) {
-        console.log("Error in log out controller " + error);
+        console.log("Error in Profile update controller " + error);
         res.status(500).json({
             message : "Interval Server Error , Profile update failed"
         })
