@@ -20,7 +20,7 @@ app.use(cors({
 }))
 
 app.use("/api/auth" , router)
-app.use("/api/message" , messageRouter)
+app.use("/api/messages" , messageRouter)
 const PORT = process.env.PORT
 app.listen( PORT, () => {
     console.log(`App is listing at port ${PORT}`)

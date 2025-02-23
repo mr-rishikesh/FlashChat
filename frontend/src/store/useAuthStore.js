@@ -9,6 +9,7 @@ import toast from "react-hot-toast"
     isSigningUp : false ,
     isLoggingIng : false ,
     isUpdatingProfile : false ,
+    onlineUsers : [] ,
 
     isCheckingAuth : true  ,
     checkAuth : async () => {
