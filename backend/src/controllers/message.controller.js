@@ -1,6 +1,8 @@
 import cloudinary from "../lib/cloudinary.js";
+import { getReiceverSocketId } from "../lib/socket.js";
 import Message from "../models/message.model.js"
 import User from "../models/user.model.js";
+import { io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req , res) => {
     try {
@@ -58,6 +60,12 @@ export const sendMessage = async (req , res ) => {
         })
 
         await newMessage.save();
+
+        const receiverSocketId = getReiceverSocketId(recieverId);
+        if(receiverSocketId) {
+            // we are using to bcz it is one one chat not a group chat thats why we are using to(receiverId)
+            io.to(receiverSocketId).emit("newMessage" , newMessage)
+        }
 
         res.status(200).json(newMessage)
 
