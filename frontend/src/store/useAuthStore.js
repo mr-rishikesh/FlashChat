@@ -1,7 +1,7 @@
 import {create} from "zustand"
 import { axiosInstance } from "../lib/axios.js"
 import { io } from "socket.io-client"
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/a";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 import toast from "react-hot-toast"
 
 
