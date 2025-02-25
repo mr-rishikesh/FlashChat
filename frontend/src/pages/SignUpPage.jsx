@@ -27,11 +27,22 @@ const SignUpPage = () => {
     return true;
    }
 
+   function refreshPage() {
+    location.reload();
+}
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
    const handleSubmit = (e) => {
     e.preventDefault()
 
     const success = validateForm();
     if(success === true) signUp(formData);
+
+    delay(900).then(() => {
+      refreshPage()
+    })
    }
 
    return (
@@ -65,7 +76,7 @@ const SignUpPage = () => {
                 <input
                   type="text"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="John Doe"
+                  placeholder="Enter your Name"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 />
@@ -101,7 +112,7 @@ const SignUpPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="••••••••"
+                  placeholder=""
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />

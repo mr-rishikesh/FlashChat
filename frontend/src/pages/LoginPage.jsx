@@ -15,12 +15,23 @@ const LoginPage = () => {
       email : "" ,
       password : ""
      })
+     function refreshPage() {
+      location.reload();
+  }
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-     const handleSubmit = (e) => {
+     const handleSubmit =  (e) => {
       e.preventDefault()
   
      
       logIn(formData);
+     delay(600).then(() => {
+       refreshPage()
+     })
+    
+    
      }
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
@@ -37,7 +48,7 @@ const LoginPage = () => {
                 <MessageSquare className="size-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold mt-2">Login</h1>
-              <p className="text-base-content/60">Login with email</p>
+              <p className="text-base-content/60">Login if You have already an Account</p>
             </div>
           </div>
 
@@ -73,7 +84,7 @@ const LoginPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="••••••••"
+                  placeholder=""
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
