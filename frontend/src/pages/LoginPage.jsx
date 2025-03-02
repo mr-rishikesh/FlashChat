@@ -15,24 +15,24 @@ const LoginPage = () => {
       email : "" ,
       password : ""
      })
-     function refreshPage() {
-      location.reload();
-  }
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  //    function refreshPage() {
+  //     location.reload();
+  // }
+  // function delay(ms) {
+  //   return new Promise(resolve => setTimeout(resolve, ms));
+  // }
 
      const handleSubmit =  (e) => {
       e.preventDefault()
   
      
       logIn(formData);
-     delay(600).then(() => {
-       refreshPage()
-     })
-    
-    
+    //  delay(600).then(() => {
+    //    refreshPage()
      }
+    
+    
+     
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* left side */}
