@@ -15,20 +15,14 @@ const LoginPage = () => {
       email : "" ,
       password : ""
      })
-  //    function refreshPage() {
-  //     location.reload();
-  // }
-  // function delay(ms) {
-  //   return new Promise(resolve => setTimeout(resolve, ms));
-  // }
+
 
      const handleSubmit =  (e) => {
       e.preventDefault()
   
      
       logIn(formData);
-    //  delay(600).then(() => {
-    //    refreshPage()
+  
      }
     
     

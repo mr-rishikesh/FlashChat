@@ -27,12 +27,8 @@ const SignUpPage = () => {
     return true;
    }
 
-   function refreshPage() {
-    location.reload();
-}
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
+
 
    const handleSubmit = (e) => {
     e.preventDefault()
@@ -40,9 +36,7 @@ function delay(ms) {
     const success = validateForm();
     if(success === true) signUp(formData);
 
-    delay(900).then(() => {
-      refreshPage()
-    })
+  
    }
 
    return (
