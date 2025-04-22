@@ -48,13 +48,13 @@ A real-time chat web application with secure authentication and instant messagin
 
 3. **Start the backend server**  
    ```bash
-   cd server
+   cd backend
    node index.js
    ```
 
 4. **Start the frontend**  
    ```bash
-   cd client
+   cd frontend
    npm start
    ```
 
