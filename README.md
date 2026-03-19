@@ -1,7 +1,7 @@
-# FlashChat 🚀  
+# FlashChat 
 A real-time chat web application with secure authentication and instant messaging.  
 
-## Features ✨  
+## Features  
 ✅ **Instant Messaging** – Real-time, bidirectional communication powered by Socket.io  
 ✅ **User Authentication** – Secure login & signup using JWT authentication  
 ✅ **Online Status** – See when users are online  
